@@ -135,3 +135,32 @@ switch (statusCode) {
 * **No silenciar excepciones:** Evitar bloques `catch` vacíos. Toda excepción capturada debe ser registrada o manejada adecuadamente.
 * **Manejo de Errores Transaccionales:** Asegurarse de que los controladores capturen errores de base de datos (`SqlException`) y devuelvan códigos de estado HTTP correctos al cliente.
 * **Mensajes amigables:** En las respuestas HTTP de error, ocultar detalles internos de la base de datos (como contraseñas, nombres de servidores o trazas de la pila) para evitar vulnerabilidades de seguridad.
+
+---
+
+## 6. Control de Versiones (Conventional Commits)
+
+Para mantener un historial de Git ordenado, estructurado y fácil de leer por todo el equipo, se adoptará la especificación de **Conventional Commits** y los mensajes de commit **se escribirán en inglés**. Cada mensaje de commit debe seguir la siguiente estructura:
+
+```text
+<type>(<scope>): <short description in lowercase>
+
+[optional body]
+```
+
+### Tipos de Commit Permitidos (Cased in lowercase):
+* **`feat`**: Implementación de una nueva funcionalidad o requerimiento (ej. `feat(api): add CRUD endpoints for products`).
+* **`fix`**: Corrección de un error o comportamiento incorrecto (ej. `fix(db): correct age calculation in scalar function`).
+* **`docs`**: Cambios exclusivamente en la documentación del proyecto (ej. `docs(standard): include conventional commits section`).
+* **`style`**: Formateo, espacios, puntos y comas, o estilos de código sin cambios de lógica (ej. `style(api): format code using editorconfig`).
+* **`refactor`**: Reorganización o mejora de código sin cambiar su funcionalidad (ej. `refactor(api): simplify dependency injection`).
+* **`chore`**: Configuración de compilación, gitignore, dependencias o herramientas (ej. `chore(git): ignore SQL Server backups in gitignore`).
+* **`perf`**: Cambios que mejoran el rendimiento (ej. `perf(api): optimize query for better performance`).
+* **`test`**: Adición o modificación de tests (ej. `test(api): add unit tests for authentication`).
+* **`db`**: Cambios exclusivamente en la base de datos (ej. `db(sqlserver): add new scalar function`).
+
+### Reglas para los Mensajes:
+1. **Idioma:** Todos los mensajes deben estar redactados en **inglés**.
+2. **Imperativo:** Usar el tiempo presente y modo imperativo (ej. "add", "fix", "format" en lugar de "added" o "fixes").
+3. **Minúsculas:** Escribir la descripción corta completamente en minúsculas y sin punto final.
+4. **Alcance:** El `<scope>` (alcance) es opcional, pero se recomienda usar términos descriptivos de las capas (ej. `api`, `db`, `git`, `standard`).
