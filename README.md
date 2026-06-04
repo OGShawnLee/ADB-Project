@@ -16,55 +16,60 @@ Este documento sirve como guía y plan de desarrollo para implementar la API RES
 
 ---
 
-## 🛠️ Configuración del Proyecto en Visual Studio Code
+## 🚀 Estado de la Configuración y Primeros Pasos
 
-### 1. Crear el Proyecto
-Abre tu terminal y ejecuta los siguientes comandos para crear la estructura del proyecto usando la interfaz de línea de comandos de .NET (CLI):
+El esqueleto inicial del proyecto de la API ya ha sido creado y configurado en la raíz bajo la carpeta `AdventureWorks.API/`.
+
+### 📂 Estructura del Repositorio
+* **`AdventureWorks.API/`**: Proyecto Web API en .NET Core.
+* **[`.editorconfig`](./.editorconfig)**: Archivo de reglas de formateo (mecanografía de 2 espacios, llaves Same-Line).
+* **[`REFERENCE.md`](./REFERENCE.md)**: Requerimientos y rúbrica oficial del curso.
+* **[`CODING-STANDARD.md`](./CODING-STANDARD.md)**: Estándar y reglas de codificación en C# y SQL.
+
+---
+
+## 🛠️ Cómo Trabajar en el Proyecto
+
+### 1. Iniciar la API en Desarrollo
+Entra a la carpeta del proyecto y arranca la API con recarga automática:
 ```bash
-# Crear un nuevo proyecto Web API con controladores
-dotnet new webapi -o AdventureWorks.API --use-controllers
-
-# Entrar a la carpeta del proyecto
 cd AdventureWorks.API
+dotnet watch run
 ```
-*Nota: Para trabajar de forma cómoda en VS Code, se recomienda instalar la extensión **C# Dev Kit** oficial de Microsoft.*
+*Nota: Esto levantará el servidor en desarrollo y abrirá la documentación de OpenAPI/Swagger automáticamente.*
 
-### 2. Instalar Paquetes de NuGet
-Instala los proveedores necesarios para conectarte a SQL Server y habilitar las herramientas de diseño ejecutando en la terminal:
-```bash
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Design
-```
-
-### 3. Configurar la Cadena de Conexión (`appsettings.json`)
-Añade la conexión a tu servidor local de SQL Server en el archivo `appsettings.json`:
+### 2. Configurar la Base de Datos (`appsettings.json`)
+Asegúrate de ajustar la cadena de conexión en `appsettings.json` con tu servidor de base de datos local (o tu contenedor Docker):
 ```json
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=TU_SERVIDOR;Database=AdventureWorks;Trusted_Connection=True;TrustServerCertificate=True;"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*"
+  }
 }
 ```
 
-### 4. Ejecutar el Proyecto
-Para compilar y arrancar la API con recarga en vivo (hot reload) mientras programas, ejecuta:
+### 3. Mantener el Formato Limpio
+Para asegurar que todo el equipo cumpla con el estándar de código (llaves en la misma línea y 2 espacios de sangría), ejecuten este comando en la terminal antes de hacer un commit:
 ```bash
-dotnet watch run
+dotnet format
 ```
-Esto abrirá automáticamente el navegador en la interfaz de Swagger (generalmente en `http://localhost:5XXX/swagger`).
+Esto auto-corregirá el formato de todo el proyecto según las reglas del archivo [`.editorconfig`](./.editorconfig).
+
+---
+
+## 🗄️ Control de Versiones para Base de Datos (Sugerencia)
+Para que todo el equipo sincronice la base de datos a la par de la API, se sugiere crear una carpeta llamada `Database/` en la raíz del proyecto para subir los scripts SQL ordenados:
+* `Database/01_clean_adventureworks.sql` (Limpieza de stored procedures predeterminados)
+* `Database/02_security_users.sql` (Usuarios, roles y permisos)
+* `Database/03_scalar_functions.sql` (Funciones de edad, impuesto, etc.)
+* `Database/04_views.sql` (Vistas requeridas)
+* `Database/05_stored_procedures.sql` (Procedimientos transaccionales CRUD)
 
 ---
 
 ## 💻 Arquitectura y Código de Ejemplo (Estilo Same-Line)
 
-De acuerdo con el [CODING-STANDARD.md](file:///c:/Users/OGSha/OneDrive/Escritorio/Developer/Web%20Development/ADB-Project/CODING-STANDARD.md) del proyecto, el código C# debe seguir la indentación de **2 espacios** y el estilo de llaves **Same-Line** (abrir la llave `{` en la misma línea).
+De acuerdo con el [CODING-STANDARD.md](./CODING-STANDARD.md) del proyecto, el código C# debe seguir la indentación de **2 espacios** y el estilo de llaves **Same-Line** (abrir la llave `{` en la misma línea).
 
 ### 1. Modelo de Producto (`Models/Product.cs`)
 ```csharp
