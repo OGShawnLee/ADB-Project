@@ -59,11 +59,11 @@ Esto auto-corregirá el formato de todo el proyecto según las reglas del archiv
 
 ## 🗄️ Control de Versiones para Base de Datos (Sugerencia)
 Para que todo el equipo sincronice la base de datos a la par de la API, se sugiere crear una carpeta llamada `Database/` en la raíz del proyecto para subir los scripts SQL ordenados:
-* `Database/01_clean_adventureworks.sql` (Limpieza de stored procedures predeterminados)
-* `Database/02_security_users.sql` (Usuarios, roles y permisos)
-* `Database/03_scalar_functions.sql` (Funciones de edad, impuesto, etc.)
-* `Database/04_views.sql` (Vistas requeridas)
-* `Database/05_stored_procedures.sql` (Procedimientos transaccionales CRUD)
+* `Database/01-CLEAN-ADVENTUREWORKS.sql` (Limpieza de stored procedures predeterminados)
+* `Database/02-SECURITY-USERS.sql` (Usuarios, roles y permisos)
+* `Database/03-SCALAR-FUNCTIONS.sql` (Funciones de edad, impuesto, etc.)
+* `Database/04-VIEWS.sql` (Vistas requeridas)
+* `Database/05-STORED-PROCEDURES.sql` (Procedimientos transaccionales CRUD)
 
 ---
 
